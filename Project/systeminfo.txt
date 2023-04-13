@@ -1,0 +1,20 @@
+Kon public IP adres niet ophalen.CPU Info: AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD
+OS info: Windows 10.0.19041
+Machine info: AMD64
+Hostname: LAPTOP-PICV9HHS
+Private IP: 192.168.212.215
+Kon public IP adres niet ophalen.CPU Info: AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD
+OS info: Windows 10.0.19041
+Machine info: AMD64
+Hostname: LAPTOP-PICV9HHS
+Private IP: 192.168.212.215
+Kon public IP adres niet ophalen.CPU Info: AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD
+OS info: Windows 10.0.19041
+Machine info: AMD64
+Hostname: LAPTOP-PICV9HHS
+Private IP: 192.168.212.215
+Kon public IP adres niet ophalen.CPU Info: AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD
+OS info: Windows 10.0.19041
+Machine info: AMD64
+Hostname: LAPTOP-PICV9HHS
+Private IP: 192.168.212.215
